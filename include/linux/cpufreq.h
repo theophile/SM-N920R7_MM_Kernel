@@ -237,6 +237,8 @@ struct cpufreq_driver {
 	struct module           *owner;
 	char			name[CPUFREQ_NAME_LEN];
 	u8			flags;
+	void			*driver_data;
+
 	/*
 	 * This should be set by platforms having multiple clock-domains, i.e.
 	 * supporting multiple policies. With this sysfs directories of governor
@@ -281,7 +283,6 @@ struct cpufreq_driver {
 
 int cpufreq_register_driver(struct cpufreq_driver *driver_data);
 int cpufreq_unregister_driver(struct cpufreq_driver *driver_data);
-
 
 void cpufreq_notify_transition(struct cpufreq_policy *policy,
 		struct cpufreq_freqs *freqs, unsigned int state);
@@ -338,6 +339,7 @@ __ATTR(_name, 0644, show_##_name, store_##_name)
 struct cpufreq_policy *cpufreq_cpu_get(unsigned int cpu);
 void cpufreq_cpu_put(struct cpufreq_policy *data);
 const char *cpufreq_get_current_driver(void);
+void *cpufreq_get_driver_data(void);
 
 /*********************************************************************
  *                        CPUFREQ 2.6. INTERFACE                     *
