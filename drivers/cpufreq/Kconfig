@@ -255,15 +255,6 @@ config CPU_FREQ_DEFAULT_GOV_BLU_ACTIVE
 	  loading your cpufreq low-level hardware driver, using the
 	  'interactive' governor for latency-sensitive workloads.
 
-config CPU_FREQ_DEFAULT_GOV_CAFACTIVE
-	bool "cafactive"
-	select CPU_FREQ_GOV_CAFACTIVE
-	help
-	  Use the CPUFreq governor 'cafactive' as default. This allows
-	  you to get a full dynamic cpu frequency capable system by simply
-	  loading your cpufreq low-level hardware driver, using the
-	  'cafactive' governor for latency-sensitive workloads.
-
 config CPU_FREQ_DEFAULT_GOV_ELECTRODEMAND
 	bool "electrodemand"
 	select CPU_FREQ_GOV_ELECTRODEMAND
@@ -337,6 +328,8 @@ config CPU_FREQ_DEFAULT_GOV_CONSERVATIVE_X
 	  Be aware that not all cpufreq drivers support the conservative
 	  governor. If unsure have a look at the help section of the
 	  driver. Fallback governor will be the performance governor.
+
+endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
 	tristate "'performance' governor"
@@ -607,17 +600,6 @@ config CPU_FREQ_GOV_BLU_ACTIVE
 	  To compile this driver as a module, choose M here: the
 	  module will be called cpufreq_blu_active.
 	  designed for latency-sensitive workloads.
-
-config CPU_FREQ_GOV_CAFACTIVE
-	tristate "'cafactive' cpufreq policy governor"
-	help
-	  'cafactive' - CodeAurora(Qualcomm) version of interactive
-	  cpufreq policy governor.
-
-	  To compile this driver as a module, choose M here: the
-	  module will be called cpufreq_cafactive.
-
-	  If in doubt, say N.
 
 config CPU_FREQ_GOV_ELECTRODEMAND
 	tristate "'electrodemand' cpufreq policy governor"
